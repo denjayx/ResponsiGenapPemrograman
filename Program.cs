@@ -8,7 +8,7 @@ namespace ProjectMahasiswa
     class Program
     {
         // deklarasi objek collection untuk menampung objek mahasiswa
-       static List<string> daftarMahasiswa = new List<string>();
+        static List<Mahasiswa> daftarMahasiswa = new List<Mahasiswa>();
 
         static void Main(string[] args)
         {
@@ -44,42 +44,44 @@ namespace ProjectMahasiswa
         {
             Console.Clear();
 
-            Console.WriteLine("Pilih Menu Aplikasi");           
-            Console.WriteLine("1. Tambah Mahasiswa");           
-            Console.WriteLine("2. Tampil Mahasiswa");           
-            Console.WriteLine("3. Keluar");           
+            Console.WriteLine("Pilih Menu Aplikasi");
+            Console.WriteLine("1. Tambah Mahasiswa");
+            Console.WriteLine("2. Tampilkan Mahasiswa");
+            Console.WriteLine("3. Keluar");
         }
 
         static void TambahMahasiswa()
         {
+
             Console.Clear();
-
-            // PERINTAH: lengkapi kode untuk menambahkan objek mahasiswa ke dalam collection
             Mahasiswa mhs = new Mahasiswa();
-            Console.Write("NIM \t: ");
-            mhs.nim = Console.ReadLine();
-            Console.Write("Nama \t: ");
-            mhs.nama = Console.ReadLine();
-            Console.Write("Jenis Kelamin : ");
-            mhs.gender = Console.ReadLine();
-            Console.Write("IPK \t: ");
-            mhs.ipk = Console.ReadLine();
-
-            List<Mahasiswa> list = new List<Mahasiswa>();
-            list.Add(mhs);
-
+            Console.WriteLine("Tambah Data Mahasiswa");
+            Console.WriteLine();
+            Console.Write("NIM : ");
+            mhs.Nim = Console.ReadLine();
+            Console.Write("Nama : ");
+            mhs.Nama = Console.ReadLine();
+            Console.Write("Jenis Kelamin [L/P] : ");
+            mhs.Gender = Console.ReadLine().ToUpper() == "L" ? "Laki-Laki" : "Perempuan";
+            Console.Write("IPK : ");
+            mhs.IPK = Console.ReadLine();
             Console.WriteLine("\nTekan ENTER untuk kembali ke menu");
             Console.ReadKey();
+            daftarMahasiswa.Add(mhs);
         }
 
         static void TampilMahasiswa()
         {
             Console.Clear();
+            Console.WriteLine("Data Mahasiswa");
+            Console.WriteLine();
+            var nomer = 1;
 
-            // PERINTAH: lengkapi kode untuk menampilkan daftar mahasiswa yang ada di dalam collection
-            Mahasiswa mhs = daftarMahasiswa;
-            Console.WriteLine("{0},{1}", mhs.nim, mhs.nama, mhs.gender, mhs.ipk);
-           
+            foreach (Mahasiswa mhs in daftarMahasiswa)
+            {
+                Console.WriteLine("{0}. {1}, {2}, {3}, {4}", nomer, mhs.Nim, mhs.Nama, mhs.Gender, mhs.IPK);
+                nomer++;
+            }
 
             Console.WriteLine("\nTekan enter untuk kembali ke menu");
             Console.ReadKey();
